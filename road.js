@@ -1,5 +1,5 @@
 class Road{
-    constructor(x,width,laneCount=3){
+    constructor(x,width,laneCount=4){
         this.x=x;
         this.width=width;
         this.laneCount=laneCount;
@@ -28,7 +28,7 @@ class Road{
     }
 
     draw(ctx){
-        ctx.lineWidth=5;
+        ctx.lineWidth=4;
         ctx.strokeStyle="white";
 
         for(let i=1;i<=this.laneCount-1;i++){

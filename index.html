@@ -1,11 +1,26 @@
 <!DOCTYPE html>
+
 <head>
     <title>Self-driving car - No libraries</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <canvas id="carCanvas"></canvas>
-    <canvas id="networkCanvas"></canvas>
+    <!-- <div id="verticalButtons">
+        <button onclick="save()">💾</button>
+        <button onclick="discard()">🗑️</button>
+    </div> -->
+    <!-- put the networkCanvas and the controlCanvas in a row-->
+        <canvas id="networkCanvas"></canvas>
+        <canvas id="controlCanvas"></canvas>
+      
+
+    <p id="demo">TEST</p>
+
+    <!-- <canvas id="networkCanvas"></canvas>
+    <canvas id="controlCanvas"></canvas> -->
+
     <script src="visualizer.js"></script>
     <script src="network.js"></script>
     <script src="sensor.js"></script>
@@ -15,4 +30,5 @@
     <script src="car.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>

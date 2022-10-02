@@ -2,6 +2,10 @@ function lerp(A,B,t){
     return A+(B-A)*t;
 }
 
+function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 function getIntersection(A,B,C,D){ 
     const tTop=(D.x-C.x)*(A.y-C.y)-(D.y-C.y)*(A.x-C.x);
     const uTop=(C.y-A.y)*(A.x-B.x)-(C.x-A.x)*(A.y-B.y);
@@ -52,3 +56,17 @@ function getRandomColor(){
     return "hsl("+hue+", 100%, 60%)";
 }
                 
+
+//Functions to generate a array for the neural network depending on the numberWeights and numberLayers
+function generateWeights(numberWeights, numberLayers){
+    let weights = [];
+    for(let i = 0; i < numberLayers; i++){
+        weights.push([]);
+        for(let j = 0; j < numberWeights; j++){
+            weights[i].push(Math.random()*2-1);
+        }
+    }
+    //print the weights in the console
+    return weights;
+    
+}

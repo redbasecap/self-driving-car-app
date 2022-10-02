@@ -1,25 +1,30 @@
 class Sensor{
-    constructor(car){
+    constructor(car, rayCount = 6, raySpread=Math.PI/1.5, rayLength=300){
         this.car=car;
-        this.rayCount=5;
-        this.rayLength=150;
-        this.raySpread=Math.PI/2;
-
+        this.rayLength=rayLength;
+        this.raySpread= raySpread;
         this.rays=[];
         this.readings=[];
+        this.rayCount = rayCount;
+
+    
     }
 
-    update(roadBorders){
+    update(roadBorders,traffic){
         this.#castRays();
         this.readings=[];
         for(let i=0;i<this.rays.length;i++){
             this.readings.push(
-                this.#getReading(this.rays[i],roadBorders)
+                this.#getReading(
+                    this.rays[i],
+                    roadBorders,
+                    traffic
+                )
             );
         }
     }
 
-    #getReading(ray,roadBorders){
+    #getReading(ray,roadBorders,traffic){
         let touches=[];
 
         for(let i=0;i<roadBorders.length;i++){
@@ -31,6 +36,21 @@ class Sensor{
             );
             if(touch){
                 touches.push(touch);
+            }
+        }
+
+        for(let i=0;i<traffic.length;i++){
+            const poly=traffic[i].polygon;
+            for(let j=0;j<poly.length;j++){
+                const value=getIntersection(
+                    ray[0],
+                    ray[1],
+                    poly[j],
+                    poly[(j+1)%poly.length]
+                );
+                if(value){
+                    touches.push(value);
+                }
             }
         }
 
@@ -71,8 +91,8 @@ class Sensor{
             }
 
             ctx.beginPath();
-            ctx.lineWidth=2;
-            ctx.strokeStyle="yellow";
+            ctx.lineWidth=1.6;
+            ctx.strokeStyle="lightgreen";
             ctx.moveTo(
                 this.rays[i][0].x,
                 this.rays[i][0].y
@@ -85,7 +105,7 @@ class Sensor{
 
             ctx.beginPath();
             ctx.lineWidth=2;
-            ctx.strokeStyle="black";
+            ctx.strokeStyle="red";
             ctx.moveTo(
                 this.rays[i][1].x,
                 this.rays[i][1].y
