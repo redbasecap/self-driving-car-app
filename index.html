@@ -7,28 +7,35 @@
 
 <body>
     <canvas id="carCanvas"></canvas>
-    <!-- <div id="verticalButtons">
-        <button onclick="save()">💾</button>
-        <button onclick="discard()">🗑️</button>
-    </div> -->
-    <!-- put the networkCanvas and the controlCanvas in a row-->
-        <canvas id="networkCanvas"></canvas>
-        <canvas id="controlCanvas"></canvas>
-      
+    <canvas id="networkCanvas"></canvas>
 
-    <p id="demo">TEST</p>
+    <!-- putting the controlCanvas and the settingsCanvas in the same row-->
+    <div class="row">
+        <div class="column">
+            <canvas id="controlCanvas"></canvas>
+        </div>
+        <div class="column">
+            <canvas id="settingsCanvas"></canvas>
+        </div>
+    </div>
+        
 
     <!-- <canvas id="networkCanvas"></canvas>
     <canvas id="controlCanvas"></canvas> -->
 
-    <script src="visualizer.js"></script>
-    <script src="network.js"></script>
-    <script src="sensor.js"></script>
-    <script src="utils.js"></script>
-    <script src="road.js"></script>
-    <script src="controls.js"></script>
-    <script src="car.js"></script>
-    <script src="main.js"></script>
+    <script src="./visualizer.js"></script>
+    <script src="./network.js"></script>
+    <script src="./sensor.js"></script>
+    <script src="./utils.js"></script>
+    <script src="./road.js"></script>
+    <script src="./controls.js"></script>
+    <script src="./car.js"></script>
+    <script src="./main.js"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 </body>
 
 </html>

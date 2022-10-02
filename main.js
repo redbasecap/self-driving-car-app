@@ -7,6 +7,18 @@ const networkCtx = networkCanvas.getContext("2d");
 const laneCountMain = 4
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9, laneCount = laneCountMain);
 
+// DISPLAY SETTINGS
+//list all the current settings in the canvas with id=settingsCanvas. Show the following values from the local storage: Population size and the neural network mode.
+function displaySettings() {
+    const settingsCanvas = document.getElementById("settingsCanvas");
+    const settingsCtx = settingsCanvas.getContext("2d");
+    settingsCtx.font = "20px Arial";
+    settingsCtx.fillStyle = "black";
+    settingsCtx.fillText("Population size: " + localStorage.getItem("population"), 10, 30);
+    settingsCtx.fillText("Neural network mode: " + localStorage.getItem("neuralNetworkMode"), 10, 60);
+}
+
+displaySettings();  
 
 // CONTROL PANEL
 

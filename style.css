@@ -31,18 +31,34 @@ button:hover{
 
 /* controlCanvas */
 #controlCanvas{
-    position: absolute;
+    position: relative;
     opacity: 90%;
     border-radius: 15px;
     margin: 5px;
-    padding: 5px;
+    height: 50;
+    width: 90%;
+    padding: 10px;
     overflow:  hidden;
-    height: 20%;
-    background-color: rgb(252, 255, 65);
+    background-color: rgb(255, 255, 209);
     color: white;
-    font-style: italic;
+    font-family: 'Roboto', sans-serif;
 
 }   
+
+/* add the design of settingsCanvas and make the font resize with the window width */
+#settingsCanvas{
+    position: relative;
+    opacity: 90%;
+    border-radius: 15px;
+    margin: 5px;
+    width: 90%;
+    padding: 5px;
+    overflow:  hidden;
+    background-color: rgb(255, 255, 209);
+    color: white;
+    font-family: 'Roboto', sans-serif;;
+    font-weight: 300;
+}
 
 #networkCanvas{
     background:rgb(208, 208, 208);
@@ -52,6 +68,7 @@ button:hover{
     padding: 5px;
     overflow:  hidden;
     height: 95vh;
+    font-family: 'Roboto', sans-serif;
 }
 
 #carCanvas{
@@ -62,4 +79,5 @@ button:hover{
     padding:5px;
     overflow: hidden;
     height: 95vh;
+    font-family: 'Roboto', sans-serif;
 }
