@@ -16,7 +16,7 @@ function displaySettings() {
     settingsCtx.font = "20px Arial";
     settingsCtx.fillStyle = "black";
     settingsCtx.fillText("Population size: " + localStorage.getItem("population"), 10, 30);
-    settingsCtx.fillText("Neural network mode: " + localStorage.getItem("neuralNetworkMode"), 10, 60);
+    settingsCtx.fillText("Neural network mode: " + localStorage.getItem("neuralNetworkMode")||"minimal", 10, 60);
     settingsCtx.fillText("Lane: " + localStorage.getItem("lane"), 10, 90);
 }
 

@@ -33,11 +33,11 @@ class Car {
                     [this.sensor.rayCount, 9, 9, 9, 9, 9, 4]
                 );
             }
-            // else{
-            //     this.brain = new NeuralNetwork(
-            //         [3, 6, 4]
-            //     );
-            // }
+            else{
+                this.brain = new NeuralNetwork(
+                    [this.sensor.rayCount, 6, 4]
+                );
+            }
         }
 
         this.controls = new Controls(controlType);
