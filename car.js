@@ -37,6 +37,7 @@ class Car {
                 this.brain = new NeuralNetwork(
                     [this.sensor.rayCount, 6, 4]
                 );
+                localStorage.setItem("neuralNetworkMode") == "minimal";
             }
         }
 

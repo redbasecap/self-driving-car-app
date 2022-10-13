@@ -1,7 +1,8 @@
+
 const carCanvas = document.getElementById("carCanvas");
 carCanvas.width = 200;
 const networkCanvas = document.getElementById("networkCanvas");
-networkCanvas.width = 500;
+networkCanvas.width = 600;
 const carCtx = carCanvas.getContext("2d");
 const networkCtx = networkCanvas.getContext("2d");
 const laneCountMain = 4
@@ -13,10 +14,10 @@ const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9, laneCount = la
 function displaySettings() {
     const settingsCanvas = document.getElementById("settingsCanvas");
     const settingsCtx = settingsCanvas.getContext("2d");
-    settingsCtx.font = "20px Arial";
+    settingsCtx.font = "15px Arial";
     settingsCtx.fillStyle = "black";
     settingsCtx.fillText("Population size: " + localStorage.getItem("population"), 10, 30);
-    settingsCtx.fillText("Neural network mode: " + localStorage.getItem("neuralNetworkMode")||"minimal", 10, 60);
+    settingsCtx.fillText("Neural network mode: " + localStorage.getItem("neuralNetworkMode") || "minimal", 10, 60);
     settingsCtx.fillText("Lane: " + localStorage.getItem("lane"), 10, 90);
 }
 
@@ -29,18 +30,33 @@ displaySettings();
 const controlCanvas = document.getElementById("controlCanvas");
 controlCanvas.width = 500;
 const controlCtx = controlCanvas.getContext("2d");
-controlCtx.font = "14px Arial";
-controlCtx.fillText("Press 's' to save the best car's brain", 10, 15);
-controlCtx.fillText("Press 'd' to discard the saved brain", 10, 30);
-controlCtx.fillText("Press 'r' to reload the simulation", 10, 45);
-controlCtx.fillText("Press 'p' to toggle population", 10, 60);
-controlCtx.fillText("Press 'n' to toggle the neural network mode", 10, 75);
-controlCtx.fillText("Press 'l' to toggle lane to start", 10,    90);
+controlCtx.font = "20px Arial";
+controlCtx.color = "white";
+lines = [
+ "Press 'S' to save the best car's brain", 
+    "Press 'D' to discard the saved brain",
+    "Press 'R' to reload the simulation",
+    "Press 'P' to toggle population",
+    "Press 'N' to toggle the neural network mode",
+    "Press 'L' to toggle lane to start"]
 
-// controlCtx.fillText("Press 'q' to toggle number of sensor rays", 10, 120);
-// controlCtx.fillText("Press 'b' to pause the simulation", 10, 90);
-// controlCtx.fillText("Press 't' to toggle traffic", 10, 60);
-// controlCtx.fillText("Press 'q' to toggle number of sensor rays", 10, 150);
+fillTextWithLineBreaks(controlCtx, lines, 5, 30, 22);
+
+
+// automatically keep the right distance between the filltext argument
+function fillTextWithLineBreaks(ctx, text, x, y, lineHeight) {
+    for (let i = 0; i < lines.length; ++i) {
+        ctx.fillText(lines[i], x, y + (i * lineHeight));
+    }
+}
+
+
+// controlCtx.fillText("Press 's' to save the best car's brain", 10, 30);
+// controlCtx.fillText("Press 'd' to discard the saved brain", 10, 30);
+// controlCtx.fillText("Press 'r' to reload the simulation", 10, 45);
+// controlCtx.fillText("Press 'p' to toggle population", 10, 60);
+// controlCtx.fillText("Press 'n' to toggle the neural network mode", 10, 75);
+// controlCtx.fillText("Press 'l' to toggle lane to start", 10, 90);
 
 //if s is pressed save the best car's brain
 document.addEventListener("keydown", e => {
@@ -138,7 +154,7 @@ function animate(time) {
     carCanvas.height = window.innerHeight * 0.90;
     networkCanvas.height = window.innerHeight * 0.90;
     //increase the dpi of the font
-    
+
     // carCanvas.width = window.innerWidth * 0.20;
     // networkCanvas.width = window.innerWidth * 0.40;
     // settingsCanvas.width = window.innerWidth * 0.20;
