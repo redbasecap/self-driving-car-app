@@ -7,6 +7,7 @@ const networkCtx = networkCanvas.getContext("2d");
 const laneCountMain = 4
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9, laneCount = laneCountMain);
 
+
 // DISPLAY SETTINGS
 //list all the current settings in the canvas with id=settingsCanvas. Show the following values from the local storage: Population size and the neural network mode.
 function displaySettings() {
@@ -16,9 +17,11 @@ function displaySettings() {
     settingsCtx.fillStyle = "black";
     settingsCtx.fillText("Population size: " + localStorage.getItem("population"), 10, 30);
     settingsCtx.fillText("Neural network mode: " + localStorage.getItem("neuralNetworkMode"), 10, 60);
+    settingsCtx.fillText("Lane: " + localStorage.getItem("lane"), 10, 90);
 }
 
-displaySettings();  
+
+displaySettings();
 
 // CONTROL PANEL
 
@@ -30,13 +33,14 @@ controlCtx.font = "14px Arial";
 controlCtx.fillText("Press 's' to save the best car's brain", 10, 15);
 controlCtx.fillText("Press 'd' to discard the saved brain", 10, 30);
 controlCtx.fillText("Press 'r' to reload the simulation", 10, 45);
-controlCtx.fillText("Press 't' to toggle traffic", 10, 60);
-controlCtx.fillText("Press 'p' to toggle population", 10, 75);
-controlCtx.fillText("Press 'b' to pause the simulation", 10, 90);
-controlCtx.fillText("Press 'n' to toggle the neural network mode", 10, 105);
-controlCtx.fillText("Press 'q' to toggle number of sensor rays", 10, 120);
-controlCtx.fillText("Press 'l' to toggle lane to start", 10, 135);
-controlCtx.fillText("Press 'q' to toggle number of sensor rays", 10, 150);
+controlCtx.fillText("Press 'p' to toggle population", 10, 60);
+controlCtx.fillText("Press 'n' to toggle the neural network mode", 10, 75);
+controlCtx.fillText("Press 'l' to toggle lane to start", 10,    90);
+
+// controlCtx.fillText("Press 'q' to toggle number of sensor rays", 10, 120);
+// controlCtx.fillText("Press 'b' to pause the simulation", 10, 90);
+// controlCtx.fillText("Press 't' to toggle traffic", 10, 60);
+// controlCtx.fillText("Press 'q' to toggle number of sensor rays", 10, 150);
 
 //if s is pressed save the best car's brain
 document.addEventListener("keydown", e => {
@@ -49,24 +53,24 @@ document.addEventListener("keydown", e => {
     if (e.key == "r") {
         location.reload();
     }
-    if (e.key == "t") {
-        toggleTraffic();
-    }
+    // if (e.key == "t") {
+    //     toggleTraffic();
+    // }
     if (e.key == "p") {
         togglePopulation();
     }
-    if (e.key == "b") {
-        togglePause();
-    }
+    // if (e.key == "b") {
+    //     togglePause();
+    // }
     if (e.key == "n") {
         toggleNeuralNetworkMode();
     }
     if (e.key == "l") {
         toggleLane();
     }
-    if (e.key == "q") {
-        toggleRays();
-    }
+    // if (e.key == "q") {
+    //     toggleRays();
+    // }
 
 });
 
@@ -112,7 +116,7 @@ function generateCars(N) {
     const cars = [];
     for (let i = 1; i <= N; i++) {
         // cars.push(new Car(road.getLaneCenter(localStorage.getItem("lane")),100,30,50,"AI", maxSpeed=4, rayCount=localStorage.getItem("rays")));
-        cars.push(x = new Car(road.getLaneCenter(localStorage.getItem("lane") || 1), y = 100, width = 30, height = 50,  controlType = "AI", maxSpeed = 4, carColor="blue"));
+        cars.push(x = new Car(road.getLaneCenter(localStorage.getItem("lane") || 1), y = 100, width = 30, height = 50, controlType = "AI", maxSpeed = 4, carColor = "blue"));
 
     }
 
@@ -131,8 +135,14 @@ function animate(time) {
             ...cars.map(c => c.y)
         ));
 
-    carCanvas.height = window.innerHeight;
-    networkCanvas.height = window.innerHeight;
+    carCanvas.height = window.innerHeight * 0.90;
+    networkCanvas.height = window.innerHeight * 0.90;
+    //increase the dpi of the font
+    
+    // carCanvas.width = window.innerWidth * 0.20;
+    // networkCanvas.width = window.innerWidth * 0.40;
+    // settingsCanvas.width = window.innerWidth * 0.20;
+
 
     carCtx.save();
     carCtx.translate(0, -bestCar.y + carCanvas.height * 0.7);
@@ -168,7 +178,7 @@ function toggleRays() {
         console.log("3 rays");
     }
     location.reload();
-}   
+}
 
 
 //toggle traffic 0, 10, 50 or 100 cars and store it in local storage
@@ -243,8 +253,6 @@ function toggleLane() {
         } else if (localStorage.getItem("lane") == 2) {
             localStorage.setItem("lane", 3);
         } else if (localStorage.getItem("lane") == 3) {
-            localStorage.setItem("lane", 4);
-        } else if (localStorage.getItem("lane") == 4) {
             localStorage.setItem("lane", 0);
         }
     } else {
@@ -253,7 +261,6 @@ function toggleLane() {
 
     location.reload();
 }
-
 
 //toggle pause
 function togglePause() {

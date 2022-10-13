@@ -5,6 +5,11 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    font-family: 'Roboto', sans-serif;
+    /* add high dpi image-rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+ 
 }
 
 #verticalButtons{
@@ -28,7 +33,6 @@ button:hover{
     flex-direction:column;
 }
 
-
 /* controlCanvas */
 #controlCanvas{
     position: relative;
@@ -41,8 +45,14 @@ button:hover{
     overflow:  hidden;
     background-color: rgb(255, 255, 209);
     color: white;
-    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    
 }   
 
 /* add the design of settingsCanvas and make the font resize with the window width */
@@ -58,6 +68,12 @@ button:hover{
     color: white;
     font-family: 'Roboto', sans-serif;;
     font-weight: 300;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
 }
 
 #networkCanvas{
@@ -69,6 +85,13 @@ button:hover{
     overflow:  hidden;
     height: 95vh;
     font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    image-rendering: pixelated
 }
 
 #carCanvas{
@@ -80,4 +103,5 @@ button:hover{
     overflow: hidden;
     height: 95vh;
     font-family: 'Roboto', sans-serif;
+    image-rendering: pixelated
 }
